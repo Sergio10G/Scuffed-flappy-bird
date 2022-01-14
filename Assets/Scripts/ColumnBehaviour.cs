@@ -28,7 +28,7 @@ public class ColumnBehaviour : MonoBehaviour
         gameObject.transform.Translate(0.0f, 0.0f, speed_ * Time.deltaTime);
 
         if (gameObject.transform.position.z >= 10.0f) {
-            gameObject.transform.Translate(0.0f, -gameObject.transform.position.y - 5.0f, -gameObject.transform.position.z - 35.0f);
+            gameObject.transform.Translate(0.0f, -gameObject.transform.position.y - 5.0f, -gameObject.transform.position.z - 15.0f);
             gameObject.transform.Translate(0.0f, Random.Range(-5.0f, 5.0f), gameObject.transform.position.z);
         }
     }

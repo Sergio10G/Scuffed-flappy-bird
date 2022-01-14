@@ -6,6 +6,7 @@ public class BirdBehaviour : MonoBehaviour
 {
     public float force_;
     public float gravity_value_;
+    public float space_pressed_threshold_ = 0.2f;
 
     private bool space_pressed_;
     private float press_time_;
@@ -31,7 +32,7 @@ public class BirdBehaviour : MonoBehaviour
             space_pressed_ = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) || Time.time - press_time_ >= 0.3f)
+        if (Input.GetKeyUp(KeyCode.Space) || Time.time - press_time_ >= space_pressed_threshold_)
         {
             space_pressed_ = false;
         }
