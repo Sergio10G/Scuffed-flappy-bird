@@ -1,2 +1,3 @@
 # Scuffed-flappy-bird
 My first unity "game". 
+Still in progress. It needs gamestates, lose conditions, score, etc...
