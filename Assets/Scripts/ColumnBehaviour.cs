@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ColumnBehaviour : MonoBehaviour
-
 {
+    private GameBehaviour parent_script_;
+
     public float speed_;
     public float start_z_;
 
     // Awake is called several frames before the first update frame
     void Awake()
     {
-        
+        speed_ = 5.0f;
+        GameObject game = GameObject.Find("Game");
+        parent_script_ = game.GetComponent<GameBehaviour>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        speed_ = 5f;
-
         gameObject.transform.Translate(0.0f, Random.Range(-5.0f, 5.0f), start_z_);
     }
 
@@ -36,8 +37,8 @@ public class ColumnBehaviour : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bird") {
-            speed_ = 0.0f;
-            Destroy(collision.gameObject, 0);
+            Destroy(collision.gameObject);
+            parent_script_.RegisterHit();
             Debug.Log("Hit");
         }
     }

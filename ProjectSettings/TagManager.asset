@@ -7,6 +7,7 @@ TagManager:
   - Bird
   - Column
   - Score_Trigger
+  - Game
   layers:
   - Default
   - TransparentFX

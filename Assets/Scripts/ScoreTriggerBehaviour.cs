@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class ScoreTriggerBehaviour : MonoBehaviour
 {
+    private GameBehaviour parent_script_;
+
+    private void Awake()
+    {
+        GameObject game = GameObject.Find("Game");
+        parent_script_ = game.GetComponent<GameBehaviour>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +26,9 @@ public class ScoreTriggerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bird")
-        {
-            Debug.Log("Score up!");
+        if (other.gameObject.tag == "Bird") {
+            parent_script_.score_ += 1;
+            Debug.Log("Score: " + parent_script_.score_);
         }
     }
 }
