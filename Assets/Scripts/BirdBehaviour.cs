@@ -37,6 +37,13 @@ public class BirdBehaviour : MonoBehaviour
             space_pressed_ = false;
         }
 
+        // This only works if a collisions make the object inactive, disable this when debugging or Exceptions will be produced.
+        /*
+        if (gameObject.transform.position.x != 0 || gameObject.transform.position.z != 0) {
+            gameObject.transform.Translate(-gameObject.transform.position.x, 0.0f, -gameObject.transform.position.z);
+        }
+        */
+
         //Debug.Log("Y: " + gameObject.transform.position.y);
     }
 

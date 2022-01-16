@@ -46,7 +46,7 @@ public class GameBehaviour : MonoBehaviour
 
     public void RegisterHit() {
         game_state_ = GameState.GAME_OVER;
-
+        bird_.SetActive(false);
         StopColumns();
     }
 
@@ -58,6 +58,16 @@ public class GameBehaviour : MonoBehaviour
         foreach (GameObject column in columns_) {
             ColumnBehaviour col_script = column.GetComponent<ColumnBehaviour>();
             col_script.speed_ = 0.0f;
+        }
+    }
+
+    public void ResetPositions() {
+        bird_.transform.SetPositionAndRotation(new Vector3(0, 5, 0), new Quaternion());
+        foreach (GameObject column in columns_) {
+            ColumnBehaviour column_script = column.GetComponent<ColumnBehaviour>();
+            float start_z = column_script.start_z_;
+            column.transform.SetPositionAndRotation(new Vector3(0, 1, start_z), new Quaternion());
+            column_script.RandomizeY();
         }
     }
 }

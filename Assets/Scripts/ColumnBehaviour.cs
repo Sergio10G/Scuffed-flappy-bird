@@ -20,7 +20,7 @@ public class ColumnBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.transform.Translate(0.0f, Random.Range(-5.0f, 5.0f), start_z_);
+        RandomizeY();
     }
 
     // Update is called once per frame
@@ -29,17 +29,20 @@ public class ColumnBehaviour : MonoBehaviour
         gameObject.transform.Translate(0.0f, 0.0f, speed_ * Time.deltaTime);
 
         if (gameObject.transform.position.z >= 10.0f) {
-            gameObject.transform.Translate(0.0f, -gameObject.transform.position.y - 5.0f, -gameObject.transform.position.z - 15.0f);
-            gameObject.transform.Translate(0.0f, Random.Range(-5.0f, 5.0f), gameObject.transform.position.z);
+            gameObject.transform.Translate(0.0f, -gameObject.transform.position.y + 1.0f, -40.0f);
+            RandomizeY();
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bird") {
-            Destroy(collision.gameObject);
-            parent_script_.RegisterHit();
+            //parent_script_.RegisterHit();
             Debug.Log("Hit");
         }
+    }
+
+    public void RandomizeY() {
+        gameObject.transform.Translate(0.0f, -6f, 0.0f);
     }
 }
