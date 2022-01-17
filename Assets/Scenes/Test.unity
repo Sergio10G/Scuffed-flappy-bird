@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18386889, g: 0.2287262, b: 0.30142066, a: 1}
+  m_IndirectSpecularColor: {r: 0.17737988, g: 0.2154248, b: 0.26618025, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -209,13 +209,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38155514}
-  m_LocalRotation: {x: 0.34394506, y: 0.30650082, z: 0.20375392, w: 0.86385375}
+  m_LocalRotation: {x: 0.36525366, y: 0.6028988, z: 0.21683519, w: 0.675341}
   m_LocalPosition: {x: 158.9, y: -32.9, z: 21.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 27.991, y: 49.325, z: 39.601}
+  m_LocalEulerAnglesHint: {x: 13.408, y: 89.634, z: 48.924}
 --- !u!1 &146549798 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 459600827066801888, guid: 8c0787b2aef78aa46ac0d104807072b6, type: 3}
@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3336544222158271271, guid: 8c0787b2aef78aa46ac0d104807072b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 3336544222158271271, guid: 8c0787b2aef78aa46ac0d104807072b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3336544222158271271, guid: 8c0787b2aef78aa46ac0d104807072b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 3336544222158271271, guid: 8c0787b2aef78aa46ac0d104807072b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 708792263}
   m_Layer: 0
   m_Name: Background 2
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 1991051395}
   m_Layer: 0
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

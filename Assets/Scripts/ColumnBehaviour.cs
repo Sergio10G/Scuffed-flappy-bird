@@ -37,12 +37,12 @@ public class ColumnBehaviour : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bird") {
-            //parent_script_.RegisterHit();
+            parent_script_.RegisterHit();
             Debug.Log("Hit");
         }
     }
 
     public void RandomizeY() {
-        gameObject.transform.Translate(0.0f, -6f, 0.0f);
+        gameObject.transform.Translate(0.0f, Random.Range(-6.0f, 3.5f), 0.0f);
     }
 }

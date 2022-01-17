@@ -8,6 +8,7 @@ public class GameBehaviour : MonoBehaviour
     public bool game_running_;
 
     private List<GameObject> columns_;
+    private List<GameObject> bgs_;
     private GameObject bird_;
 
     public enum GameState { 
@@ -21,10 +22,14 @@ public class GameBehaviour : MonoBehaviour
     private void Awake()
     {
         columns_ = new List<GameObject>();
+        bgs_ = new List<GameObject>();
         score_ = 0;
         foreach (Transform child in transform) {
             if (child.tag == "Column") {
                 columns_.Add(child.gameObject);
+            }
+            else if (child.tag == "Background") {
+                bgs_.Add(child.gameObject);
             }
             else if (child.tag == "Bird") {
                 bird_ = child.gameObject;
@@ -48,6 +53,7 @@ public class GameBehaviour : MonoBehaviour
         game_state_ = GameState.GAME_OVER;
         bird_.SetActive(false);
         StopColumns();
+        StopBgs();
     }
 
     void StopColumns() {
@@ -58,6 +64,19 @@ public class GameBehaviour : MonoBehaviour
         foreach (GameObject column in columns_) {
             ColumnBehaviour col_script = column.GetComponent<ColumnBehaviour>();
             col_script.speed_ = 0.0f;
+        }
+    }
+
+    void StopBgs() {
+        if (bgs_.Count == 0)
+        {
+            return;
+        }
+
+        foreach (GameObject bg in bgs_)
+        {
+            BackgroundBehaviour bg_script = bg.GetComponent<BackgroundBehaviour>();
+            bg_script.speed_ = 0.0f;
         }
     }
 
