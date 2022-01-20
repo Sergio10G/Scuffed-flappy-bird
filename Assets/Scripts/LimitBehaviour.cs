@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class ScoreTriggerBehaviour : MonoBehaviour
+public class LimitBehaviour : MonoBehaviour
 {
     private GameBehaviour game_script_;
 
@@ -16,7 +15,7 @@ public class ScoreTriggerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -27,10 +26,8 @@ public class ScoreTriggerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bird") {
-            game_script_.score_ += 1;
-            game_script_.RefreshScoreUI();
-            Debug.Log("Score: " + game_script_.score_);
+        if (other.tag == "Bird") {
+            game_script_.RegisterHit();
         }
     }
 }

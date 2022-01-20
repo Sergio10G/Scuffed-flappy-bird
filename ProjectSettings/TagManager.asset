@@ -9,6 +9,7 @@ TagManager:
   - Score_Trigger
   - Game
   - Background
+  - UI_Score
   layers:
   - Default
   - TransparentFX

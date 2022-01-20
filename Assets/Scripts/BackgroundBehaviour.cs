@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundBehaviour : MonoBehaviour
 {
     public float speed_;
-    public float start_x_;
+    public float start_z_;
 
     // Start is called before the first frame update
     void Start()
@@ -21,5 +21,10 @@ public class BackgroundBehaviour : MonoBehaviour
         if (gameObject.transform.position.z >= 46.0f) {
             gameObject.transform.Translate(-105.0f, 0.0f, 0.0f);
         }
+    }
+
+    public void ResetPosition()
+    {
+        gameObject.transform.Translate(-gameObject.transform.position.z + start_z_, 0.0f, 0.0f);
     }
 }
