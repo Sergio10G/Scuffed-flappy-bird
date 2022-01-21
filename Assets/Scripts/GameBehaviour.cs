@@ -19,7 +19,35 @@ public class GameBehaviour : MonoBehaviour
         GAME_OVER
     }
 
-    public GameState game_state_;
+    private GameState _game_state;
+    public GameState CurrentGameState_
+    {
+        get { return _game_state; }
+        set
+        {
+            // TODO: Change UIs in each gamestate
+            _game_state = value;
+            if (value == GameState.MENU)
+            {
+                // DO SOMETHING HERE
+            }
+            else if (value == GameState.PLAYING)
+            {
+                score_ = 0;
+                bird_.SetActive(true);
+                ResetPositions();
+                StartColumns();
+                StartBgs();
+            }
+            else if (value == GameState.GAME_OVER)
+            {
+                bird_.SetActive(false);
+                StopColumns();
+                StopBgs();
+                RefreshScoreUI();
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -44,7 +72,7 @@ public class GameBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        CurrentGameState_ = GameState.MENU;
     }
 
     // Update is called once per frame
@@ -54,33 +82,11 @@ public class GameBehaviour : MonoBehaviour
     }
 
     public void RegisterHit() {
-        game_state_ = GameState.GAME_OVER;
-        bird_.SetActive(false);
-        StopColumns();
-        StopBgs();
-        score_ = 0;
-        RefreshScoreUI();
-
-        RestartGame();
+        CurrentGameState_ = GameState.GAME_OVER;
     }
 
     public void RestartGame() {
-        game_state_ = GameState.PLAYING;
-        bird_.SetActive(true);
-        ResetPositions();
-        StartColumns();
-        StartBgs();
-    }
-
-    void StopColumns() {
-        if (columns_.Count == 0) {
-            return;
-        }
-
-        foreach (GameObject column in columns_) {
-            ColumnBehaviour col_script = column.GetComponent<ColumnBehaviour>();
-            col_script.speed_ = 0.0f;
-        }
+        CurrentGameState_ = GameState.PLAYING;
     }
 
     void StartColumns()
@@ -97,16 +103,14 @@ public class GameBehaviour : MonoBehaviour
         }
     }
 
-    void StopBgs() {
-        if (bgs_.Count == 0)
-        {
+    void StopColumns() {
+        if (columns_.Count == 0) {
             return;
         }
 
-        foreach (GameObject bg in bgs_)
-        {
-            BackgroundBehaviour bg_script = bg.GetComponent<BackgroundBehaviour>();
-            bg_script.speed_ = 0.0f;
+        foreach (GameObject column in columns_) {
+            ColumnBehaviour col_script = column.GetComponent<ColumnBehaviour>();
+            col_script.speed_ = 0.0f;
         }
     }
 
@@ -121,6 +125,20 @@ public class GameBehaviour : MonoBehaviour
         {
             BackgroundBehaviour bg_script = bg.GetComponent<BackgroundBehaviour>();
             bg_script.speed_ = 2.5f;
+        }
+    }
+
+    void StopBgs()
+    {
+        if (bgs_.Count == 0)
+        {
+            return;
+        }
+
+        foreach (GameObject bg in bgs_)
+        {
+            BackgroundBehaviour bg_script = bg.GetComponent<BackgroundBehaviour>();
+            bg_script.speed_ = 0.0f;
         }
     }
 
