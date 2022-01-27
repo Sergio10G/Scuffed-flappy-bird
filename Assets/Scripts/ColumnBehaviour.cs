@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class ColumnBehaviour : MonoBehaviour
 {
-    private GameBehaviour game_script_;
-
     public float speed_;
     public float start_z_;
 
     // Awake is called several frames before the first update frame
     void Awake()
     {
-        speed_ = 5.0f;
-        GameObject game = GameObject.Find("Game");
-        game_script_ = game.GetComponent<GameBehaviour>();
+        //speed_ = 5.0f;
     }
 
     // Start is called before the first frame update
@@ -37,8 +33,7 @@ public class ColumnBehaviour : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bird") {
-            game_script_.RegisterHit();
-            Debug.Log("Hit");
+            GameManager.Instance.RegisterHit();
         }
     }
 
