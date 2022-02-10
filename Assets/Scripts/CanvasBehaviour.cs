@@ -9,9 +9,7 @@ public class CanvasBehaviour : MonoBehaviour
     GameObject gameOver_;
 
     void Awake() {
-        mainMenu_ = gameObject.GetComponent<RectTransform>().GetChild(0).gameObject;
-        inGameUI_ = gameObject.GetComponent<RectTransform>().GetChild(1).gameObject;
-        gameOver_ = gameObject.GetComponent<RectTransform>().GetChild(2).gameObject;
+        InitUI();
     }
 
     // Start is called before the first frame update
@@ -27,6 +25,8 @@ public class CanvasBehaviour : MonoBehaviour
     }
 
     public void ShowUI(int index) {
+        if (!mainMenu_ || !inGameUI_ || !gameOver_)
+            InitUI();
         mainMenu_.SetActive(false);
         inGameUI_.SetActive(false);
         gameOver_.SetActive(false);
@@ -41,5 +41,11 @@ public class CanvasBehaviour : MonoBehaviour
                 gameOver_.SetActive(true);
                 break;
         }
+    }
+
+    public void InitUI() {
+        mainMenu_ = gameObject.GetComponent<RectTransform>().GetChild(0).gameObject;
+        inGameUI_ = gameObject.GetComponent<RectTransform>().GetChild(1).gameObject;
+        gameOver_ = gameObject.GetComponent<RectTransform>().GetChild(2).gameObject;
     }
 }

@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         gameover_score_ui_ = GameObject.Find("GameOverScore").GetComponent<Text>();
         gameover_score_ui_bg_ = GameObject.Find("GameOverScore_bg").GetComponent<Text>();
 
-        CurrentGameState = GameState.PLAYING;
+        CurrentGameState = GameState.MENU;
     }
 
     private void RefreshScoreUI()
@@ -205,5 +205,16 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         CurrentGameState = GameState.PLAYING;
+    }
+
+    public void ShowMenu()
+    {
+        CurrentGameState = GameState.MENU;
+        ResetPositions();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

@@ -12,9 +12,25 @@ public class BirdBehaviour : MonoBehaviour
     private float press_time_;
     private Rigidbody rb_;
 
+    InputControl input_;
+
     private void Awake()
     {
         rb_ = GetComponent<Rigidbody>();
+
+        input_ = new InputControl();
+        input_.PlayerKeyboard.Jump.performed += Jump_performed =>
+        {
+            space_pressed_ = true;
+            press_time_ = Time.time;
+        };
+
+        input_.PlayerKeyboard.Jump.canceled += Jump_performed =>
+        {
+            space_pressed_ = false;
+            press_time_ = -1;
+        };
+
     }
 
     // Start is called before the first frame update
@@ -26,6 +42,9 @@ public class BirdBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (press_time_ != -1 && Time.time - press_time_ >= space_pressed_threshold_)
+            space_pressed_ = false;
+        /*
         if (!space_pressed_ && Input.GetKeyDown(KeyCode.Space))
         {
             press_time_ = Time.time;
@@ -36,6 +55,7 @@ public class BirdBehaviour : MonoBehaviour
         {
             space_pressed_ = false;
         }
+        */
 
         // This only works if a collisions make the object inactive, disable this when debugging or Exceptions will be produced.
         /*
@@ -54,5 +74,15 @@ public class BirdBehaviour : MonoBehaviour
         if (space_pressed_) {
             rb_.AddForce(0.0f, force_ * 0.1f, 0.0f, ForceMode.VelocityChange);
         }
+    }
+
+    private void OnEnable()
+    {
+        input_.PlayerKeyboard.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input_.PlayerKeyboard.Disable();
     }
 }
