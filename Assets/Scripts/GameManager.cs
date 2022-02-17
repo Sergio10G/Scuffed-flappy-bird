@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     private Text gameover_score_ui_;
     private Text gameover_score_ui_bg_;
 
+    public int winning_score_ = 20;
+
     // Class attributes
     private static GameManager instance_;
     public static GameManager Instance
@@ -32,6 +35,10 @@ public class GameManager : MonoBehaviour
         {
             score_ = value;
             RefreshScoreUI();
+            if (value == winning_score_)
+            {
+                SceneManager.LoadScene("Victory");
+            }
         }
     }
 
